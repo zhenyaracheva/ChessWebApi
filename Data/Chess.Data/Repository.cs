@@ -96,19 +96,9 @@
 
         public int SaveChanges()
         {
-           // try
-            //{
-                return this.Context.SaveChanges();
-
-            //}
-            //catch (Exception ex)
-           // {
-
-            //}
-
-           // return 1;
+            return this.Context.SaveChanges();
         }
-        
+
         public void Dispose()
         {
             this.Context.Dispose();

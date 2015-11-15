@@ -1,6 +1,7 @@
 ﻿namespace Chess.Server.Controllers
 {
     using Chess.Models;
+    using Models;
     using Microsoft.AspNet.Identity;
     using Services.Contracts;
     using System;
@@ -33,6 +34,86 @@
             return this.Ok(newGame.Id);
         }
 
+
+
+        [HttpGet]
+        public IHttpActionResult Status(string gameId)
+        {
+            var currentUserId = this.User.Identity.GetUserId();
+            var gameIdAsGuid = new Guid(gameId);
+
+            var game = this.gameService.All()
+                                        .Where(x => x.Id == gameIdAsGuid)
+                                        .Select(x => new GameResponseModel
+                                        {
+                                            Id = x.Id,
+                                            GameState = x.GameState,
+                                            WhitePlayerId = x.WhitePlayerId,
+                                            WhitePlayerUsername = x.WhitePlayer.UserName,
+                                            BlackPlayerId = x.BlackPlayerId,
+                                            BlackPlayerUsername = x.BlackPlayer.UserName
+                                        })
+                                        .FirstOrDefault();
+
+            if (game == null)
+            {
+                return this.NotFound();
+            }
+
+            if (game.WhitePlayerId != currentUserId && game.BlackPlayerId != currentUserId)
+            {
+                return this.Unauthorized();
+            }
+
+
+            return this.Ok(game);
+        }
+
+        [HttpPost]
+        public IHttpActionResult Play(PlayRequestModel request)
+        {
+            if (request == null || !this.ModelState.IsValid)
+            {
+                return this.BadRequest(ModelState);
+            }
+
+            var currentUserId = this.User.Identity.GetUserId();
+            var gameIdAsGuid = new Guid(request.GameId);
+
+            var game = this.gameService.All()
+                                        .Where(x => x.Id == gameIdAsGuid)
+                                        .FirstOrDefault();
+
+            // check if exist that game
+            if (game == null)
+            {
+                return this.BadRequest("Invalid game id!");
+            }
+
+            // chaeck if current user is part of this game
+            if (game.WhitePlayerId != currentUserId && game.BlackPlayerId != currentUserId)
+            {
+                this.BadRequest("You are not part of this game!");
+            }
+
+            //check if game is still playing
+            if(game.GameState != GameState.TurnWhitePlayer && game.GameState != GameState.TurnBlackPlayer)
+            {
+                return this.BadRequest("Game is not playing!");
+            }
+
+            // check if current player must play
+            if ((game.GameState == GameState.TurnWhitePlayer && game.WhitePlayerId != currentUserId) ||
+                (game.GameState == GameState.TurnBlackPlayer && game.BlackPlayerId != currentUserId))
+            {
+                return this.BadRequest("Not your turn!");
+            }
+
+
+
+            return this.Ok();
+        }
+
         [HttpPost]
         public IHttpActionResult Join()
         {
@@ -51,35 +132,6 @@
             this.gameService.Update(game);
 
             return this.Ok(game.Id);
-        }
-
-        [HttpGet]
-        public IHttpActionResult Status(string gameId)
-        {
-            var currentUserId = this.User.Identity.GetUserId();
-            var gameIdAsGuid = new Guid(gameId);
-
-            var game = this.gameService.All()
-                                        .Where(x => x.Id == gameIdAsGuid)
-                                        .Select(x => new
-                                        {
-                                            x.WhitePlayerId,
-                                            x.BlackPlayerId
-                                        })
-                                        .FirstOrDefault();
-
-            if (this.gameService.All().Any())
-            {
-                return this.NotFound();
-            }
-
-            if (game.WhitePlayerId != currentUserId && game.BlackPlayerId == currentUserId)
-            {
-                return this.Unauthorized();
-            }
-
-
-            return this.Ok(game);
         }
     }
 }
