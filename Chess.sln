@@ -6,6 +6,11 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Server", "Server", "{E83C3D9C-8D4F-464B-8F06-7A52B77B1394}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{9CD15C82-13E4-4C4D-B32B-96D4468E720F}"
+	ProjectSection(SolutionItems) = preProject
+		Server\Chess.Server\Web.config = Server\Chess.Server\Web.config
+		Server\Chess.Server\Web.Debug.config = Server\Chess.Server\Web.Debug.config
+		Server\Chess.Server\Web.Release.config = Server\Chess.Server\Web.Release.config
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{EF60E411-1B15-438D-B508-C0CA40429634}"
 EndProject
