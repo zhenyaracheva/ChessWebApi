@@ -2,7 +2,6 @@
 {
     using System;
     using System.Linq;
-    using System.Threading.Tasks;
 
     public interface IRepository<T> : IDisposable where T : class
     {
@@ -23,7 +22,5 @@
         void Detach(T entity);
 
         int SaveChanges();
-
-        Task<int> SaveChangesAsync();
     }
 }

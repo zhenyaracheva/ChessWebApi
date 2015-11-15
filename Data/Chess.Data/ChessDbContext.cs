@@ -4,8 +4,9 @@
     using Chess.Models;
     using Microsoft.AspNet.Identity.EntityFramework;
     using Migrations;
+    using Contracts;
 
-    public class ChessDbContext : IdentityDbContext<User>
+    public class ChessDbContext : IdentityDbContext<User>, IChessDbContext
     {
         public ChessDbContext()
             : base("Chess")

@@ -1,5 +1,6 @@
 ﻿namespace Chess.Models
 {
+    using Data.Common;
     using System;
     using System.Collections.Generic;
 
@@ -27,5 +28,24 @@
             get { return this.figures; }
             set { this.figures = value; }
         }
+
+       // private  void InitializeStartGameBoard()
+       // {
+       //     var figureIndex = 0;
+       //     var firstPlayerRow = GlobalConstants.StandatdBoardGameSize -GlobalConstants.InitialRowsWithFigures + 1;
+       // 
+       //     for (int secondPlayerRow = 0; secondPlayerRow <2; secondPlayerRow++)
+       //     {
+       //         for (int col = 0; col < 8; col++)
+       //         {
+       //             var currentFigureType = GlobalConstants.StartFigureOrderStandartGame[figureIndex];
+       //             this.SetFigure(new Position(firstPlayerRow, col), (IFigure)Activator.CreateInstance(currentFigureType, FigureColor.White));
+       //             this.SetFigure(new Position(secondPlayerRow, col), (IFigure)Activator.CreateInstance(currentFigureType, FigureColor.Black));
+       //             figureIndex++;
+       //         }
+       // 
+       //         firstPlayerRow--;
+       //     }
+       // }
     }
 }

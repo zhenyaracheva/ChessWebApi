@@ -10,7 +10,7 @@
     public class Repository<T> : IRepository<T>
         where T : class
     {
-        public Repository(DbContext context)
+        public Repository(IChessDbContext context)
         {
             if (context == null)
             {
@@ -23,7 +23,7 @@
 
         protected IDbSet<T> DbSet { get; set; }
 
-        protected DbContext Context { get; set; }
+        protected IChessDbContext Context { get; set; }
 
         public virtual IQueryable<T> All()
         {
@@ -96,14 +96,19 @@
 
         public int SaveChanges()
         {
-            return this.Context.SaveChanges();
-        }
+           // try
+            //{
+                return this.Context.SaveChanges();
 
-        public Task<int> SaveChangesAsync()
-        {
-            return this.Context.SaveChangesAsync();
-        }
+            //}
+            //catch (Exception ex)
+           // {
 
+            //}
+
+           // return 1;
+        }
+        
         public void Dispose()
         {
             this.Context.Dispose();
