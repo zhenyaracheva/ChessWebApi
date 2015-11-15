@@ -1,0 +1,54 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Server", "Server", "{E83C3D9C-8D4F-464B-8F06-7A52B77B1394}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{9CD15C82-13E4-4C4D-B32B-96D4468E720F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{EF60E411-1B15-438D-B508-C0CA40429634}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebClient", "WebClient", "{FF60247C-6BA2-4EC7-8C0A-A96B16C56051}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chess.Server", "Server\Chess.Server\Chess.Server.csproj", "{D45C50D6-F164-47CA-B720-497CBD00165B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chess.Models", "Data\Chess.Models\Chess.Models.csproj", "{5B2BFD43-0F8D-4747-A232-8F7EB2789FDA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chess.Data", "Data\Chess.Data\Chess.Data.csproj", "{1272F1F3-1DCE-4984-8DCB-6E7CB8BDE6F2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chess.Services", "Services\Chess.Services\Chess.Services.csproj", "{D8D505ED-2824-4DC2-BB30-7A7A3B70FC38}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D45C50D6-F164-47CA-B720-497CBD00165B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D45C50D6-F164-47CA-B720-497CBD00165B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D45C50D6-F164-47CA-B720-497CBD00165B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D45C50D6-F164-47CA-B720-497CBD00165B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B2BFD43-0F8D-4747-A232-8F7EB2789FDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B2BFD43-0F8D-4747-A232-8F7EB2789FDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B2BFD43-0F8D-4747-A232-8F7EB2789FDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B2BFD43-0F8D-4747-A232-8F7EB2789FDA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1272F1F3-1DCE-4984-8DCB-6E7CB8BDE6F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1272F1F3-1DCE-4984-8DCB-6E7CB8BDE6F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1272F1F3-1DCE-4984-8DCB-6E7CB8BDE6F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1272F1F3-1DCE-4984-8DCB-6E7CB8BDE6F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8D505ED-2824-4DC2-BB30-7A7A3B70FC38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8D505ED-2824-4DC2-BB30-7A7A3B70FC38}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8D505ED-2824-4DC2-BB30-7A7A3B70FC38}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8D505ED-2824-4DC2-BB30-7A7A3B70FC38}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D45C50D6-F164-47CA-B720-497CBD00165B} = {E83C3D9C-8D4F-464B-8F06-7A52B77B1394}
+		{5B2BFD43-0F8D-4747-A232-8F7EB2789FDA} = {EF60E411-1B15-438D-B508-C0CA40429634}
+		{1272F1F3-1DCE-4984-8DCB-6E7CB8BDE6F2} = {EF60E411-1B15-438D-B508-C0CA40429634}
+		{D8D505ED-2824-4DC2-BB30-7A7A3B70FC38} = {9CD15C82-13E4-4C4D-B32B-96D4468E720F}
+	EndGlobalSection
+EndGlobal
