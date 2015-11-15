@@ -7,6 +7,7 @@
     using System;
     using System.Linq;
     using System.Web.Http;
+    using GameLogic;
 
     public class GameController : ApiController
     {
@@ -37,10 +38,10 @@
 
 
         [HttpGet]
-        public IHttpActionResult Status(string gameId)
+        public IHttpActionResult Status(string id)
         {
             var currentUserId = this.User.Identity.GetUserId();
-            var gameIdAsGuid = new Guid(gameId);
+            var gameIdAsGuid = new Guid(id);
 
             var game = this.gameService.All()
                                         .Where(x => x.Id == gameIdAsGuid)
@@ -51,7 +52,8 @@
                                             WhitePlayerId = x.WhitePlayerId,
                                             WhitePlayerUsername = x.WhitePlayer.UserName,
                                             BlackPlayerId = x.BlackPlayerId,
-                                            BlackPlayerUsername = x.BlackPlayer.UserName
+                                            BlackPlayerUsername = x.BlackPlayer.UserName,
+                                            Board = x.Board
                                         })
                                         .FirstOrDefault();
 
@@ -70,7 +72,7 @@
         }
 
         [HttpPost]
-        public IHttpActionResult Play(PlayRequestModel request)
+        public IHttpActionResult Play(PlayRequestModel request, IGameResultValidator resultValidator)
         {
             if (request == null || !this.ModelState.IsValid)
             {
@@ -97,7 +99,7 @@
             }
 
             //check if game is still playing
-            if(game.GameState != GameState.TurnWhitePlayer && game.GameState != GameState.TurnBlackPlayer)
+            if (game.GameState != GameState.TurnWhitePlayer && game.GameState != GameState.TurnBlackPlayer)
             {
                 return this.BadRequest("Game is not playing!");
             }
@@ -109,7 +111,26 @@
                 return this.BadRequest("Not your turn!");
             }
 
+            var result = resultValidator.GetGameResult(game.Board);
 
+            switch (result)
+            {
+                case GameResult.NotFinished:
+                    break;
+                case GameResult.WonByWhitePlayer:
+                    break;
+                case GameResult.WonByBlackPlayer:
+                    break;
+                case GameResult.Draw:
+                    break;
+                default:
+                    break;
+            }
+
+            //TODO:
+            // Update board
+            // Check position
+            // Check if game ends
 
             return this.Ok();
         }

@@ -19,8 +19,6 @@
 
         public virtual IDbSet<Position> Positions { get; set; }
 
-        public virtual IDbSet<Board> Boards { get; set; }
-
         public static ChessDbContext Create()
         {
             return new ChessDbContext();

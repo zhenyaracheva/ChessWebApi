@@ -5,7 +5,7 @@
 
     public class GameResponseModel
     {
-         public Guid Id { get; set; }
+        public Guid Id { get; set; }
 
         public string WhitePlayerId { get; set; }
 
@@ -14,6 +14,8 @@
         public string BlackPlayerId { get; set; }
 
         public string BlackPlayerUsername { get; set; }
+
+        public string Board { get; set; }
 
         public GameState GameState { get; set; }
     }

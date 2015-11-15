@@ -12,8 +12,7 @@
         IDbSet<Game> Games { get; set; }
 
         IDbSet<Position> Positions { get; set; }
-
-        IDbSet<Board> Boards { get; set; }
+        
 
         DbSet<TEntity> Set<TEntity>() where TEntity : class;
 

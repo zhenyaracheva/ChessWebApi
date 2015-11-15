@@ -226,6 +226,10 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Chess.GameLogic\Chess.GameLogic.csproj">
+      <Project>{16fe776f-392f-45a0-a95e-310f788c66d1}</Project>
+      <Name>Chess.GameLogic</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Data\Chess.Data\Chess.Data.csproj">
       <Project>{1272f1f3-1dce-4984-8dcb-6e7cb8bde6f2}</Project>
       <Name>Chess.Data</Name>

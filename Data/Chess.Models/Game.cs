@@ -3,7 +3,6 @@
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
 
     public class Game
     {
@@ -15,12 +14,9 @@
             this.Id = Guid.NewGuid();
             this.GameState = GameState.WaitingForSecondPlayer;
             this.figures = new HashSet<Figure>();
-
-            //TODO: Fix board
-            //this.Board = new Board();
+            this.Board = "BBBBBBBBBBBBBBBB--------------------------------WWWWWWWWWWWWWWWW"; 
         }
-
-        //[Key, ForeignKey("User")]
+        
         public Guid Id { get; set; }
 
         public GameState GameState { get; set; }
@@ -34,9 +30,7 @@
 
         public User BlackPlayer { get; set; }
 
-       // public int BoardId { get; set; }
-
-       // public virtual Board Board { get; set; }
+        public string Board { get; set; }
 
         public ICollection<Figure> Figures
         {
