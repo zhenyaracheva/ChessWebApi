@@ -13,6 +13,7 @@ namespace Chess.Server.App_Start
     using Ninject.Web.Common;
     using Data.Contracts;
     using Data;
+    using GameLogic;
 
     public static class NinjectConfig
     {
@@ -77,6 +78,8 @@ namespace Chess.Server.App_Start
                            .From("Chess.Services")
                            .SelectAllClasses()
                            .BindDefaultInterface());
+
+            kernel.Bind<IGameResultValidator>().To<GameResultValidator>().InRequestScope();
         }
     }
 }

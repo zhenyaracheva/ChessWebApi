@@ -1,21 +1,26 @@
 ﻿namespace Chess.Server.Controllers
 {
-    using Chess.Models;
-    using Models;
-    using Microsoft.AspNet.Identity;
-    using Services.Contracts;
+
     using System;
     using System.Linq;
     using System.Web.Http;
+
+    using Chess.Models;
+    using Common;
     using GameLogic;
+    using Microsoft.AspNet.Identity;
+    using Models;
+    using Services.Contracts;
 
     public class GameController : ApiController
     {
         private IGameService gameService;
+        private IGameResultValidator resultValidator;
 
-        public GameController(IGameService gameService)
+        public GameController(IGameService gameService, IGameResultValidator resultValidator)
         {
             this.gameService = gameService;
+            this.resultValidator = resultValidator;
         }
 
         [HttpGet]
@@ -34,9 +39,7 @@
 
             return this.Ok(newGame.Id);
         }
-
-
-
+        
         [HttpGet]
         public IHttpActionResult Status(string id)
         {
@@ -72,7 +75,7 @@
         }
 
         [HttpPost]
-        public IHttpActionResult Play(PlayRequestModel request, IGameResultValidator resultValidator)
+        public IHttpActionResult Play(PlayRequestModel request)
         {
             if (request == null || !this.ModelState.IsValid)
             {
@@ -89,39 +92,45 @@
             // check if exist that game
             if (game == null)
             {
-                return this.BadRequest("Invalid game id!");
+                return this.BadRequest(GameMessages.InvalidGameIdMessage);
             }
 
             // chaeck if current user is part of this game
             if (game.WhitePlayerId != currentUserId && game.BlackPlayerId != currentUserId)
             {
-                this.BadRequest("You are not part of this game!");
+                this.BadRequest(GameMessages.NotPartOfGameMessage);
             }
 
             //check if game is still playing
             if (game.GameState != GameState.TurnWhitePlayer && game.GameState != GameState.TurnBlackPlayer)
             {
-                return this.BadRequest("Game is not playing!");
+                return this.BadRequest(GameMessages.NotPlayingGameMessage);
             }
 
             // check if current player must play
             if ((game.GameState == GameState.TurnWhitePlayer && game.WhitePlayerId != currentUserId) ||
                 (game.GameState == GameState.TurnBlackPlayer && game.BlackPlayerId != currentUserId))
             {
-                return this.BadRequest("Not your turn!");
+                return this.BadRequest(GameMessages.NotYourTurnMessage);
             }
 
-            var result = resultValidator.GetGameResult(game.Board);
+            var result = this.resultValidator.GetGameResult(game.Board);
 
             switch (result)
             {
                 case GameResult.NotFinished:
                     break;
                 case GameResult.WonByWhitePlayer:
+                    game.GameState = GameState.WonWhitePlayer;
+                    this.gameService.Update(game);
                     break;
                 case GameResult.WonByBlackPlayer:
+                    game.GameState = GameState.WonBlackPlayer;
+                    this.gameService.Update(game);
                     break;
                 case GameResult.Draw:
+                    game.GameState = GameState.DrawGame;
+                    this.gameService.Update(game);
                     break;
                 default:
                     break;
