@@ -30,6 +30,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Logic", "Logic", "{AEE1E526
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chess.GameLogic", "Chess.GameLogic\Chess.GameLogic.csproj", "{16FE776F-392F-45A0-A95E-310F788C66D1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chess.Server.Common", "Chess.Server.Common\Chess.Server.Common.csproj", "{7750BC41-D053-452A-9573-91EC9164B209}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -60,6 +62,10 @@ Global
 		{16FE776F-392F-45A0-A95E-310F788C66D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{16FE776F-392F-45A0-A95E-310F788C66D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{16FE776F-392F-45A0-A95E-310F788C66D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7750BC41-D053-452A-9573-91EC9164B209}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7750BC41-D053-452A-9573-91EC9164B209}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7750BC41-D053-452A-9573-91EC9164B209}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7750BC41-D053-452A-9573-91EC9164B209}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -71,5 +77,6 @@ Global
 		{D8D505ED-2824-4DC2-BB30-7A7A3B70FC38} = {9CD15C82-13E4-4C4D-B32B-96D4468E720F}
 		{7B2758EB-E273-4E6D-992C-72851837E577} = {EF60E411-1B15-438D-B508-C0CA40429634}
 		{16FE776F-392F-45A0-A95E-310F788C66D1} = {AEE1E526-C766-4A63-BFEE-9A02177E5ADD}
+		{7750BC41-D053-452A-9573-91EC9164B209} = {E83C3D9C-8D4F-464B-8F06-7A52B77B1394}
 	EndGlobalSection
 EndGlobal
